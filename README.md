@@ -50,4 +50,4 @@ For more details feel free to join us on our [support chat](http://moodstocks.ca
 
 ## Copyright
 
-Copyright (c) 2010 Moodstocks SAS
+Copyright (c) 2011 Moodstocks SAS

@@ -256,7 +256,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = DemoApp;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -286,7 +286,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Release;
 		};

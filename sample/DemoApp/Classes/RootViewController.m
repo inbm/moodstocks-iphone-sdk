@@ -57,6 +57,13 @@ static NSString* kMAPISecret = @"SeCrEtKeY";
     self.message = [info objectForKey:@"message"];
     self.matches = [results objectForKey:@"matches"];
     
+    // (optional) if needed, you can retrieve the original image that has just been scanned
+    // e.g. this is useful if your application needs to upload it, save it into the library, etc
+    //
+    // This image corresponds to the `UIImagePickerControllerOriginalImage' format (resolution is 2592x1936 on an iPhone 4)
+    UIImage* image = [info objectForKey:@"image"];
+    // ... do something useful with `image'
+    
     // When the status is "error" the message field possible values are:
     // * "Connection failure"
     // * "Request timed out"

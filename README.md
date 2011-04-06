@@ -39,6 +39,8 @@ Then, the SDK is pretty similar to the iOS `UIImagePickerController`:
 	     It returns a dictionary that includes the `status` (`ok` or `error`), the `message` (useful when an error occurs) and the
 	     list of `matches` that refer to the item IDs you've imported into Moodstocks API.
 	     This list is empty in case of no match found.
+	     This dictionary also includes the original image used for querying (see `UIImagePickerControllerOriginalImage`).
+	     Use the `image` key to obtain this `UIImage` (on iPhone 4 the resolution is 2592x1936).
 	*   `imagePickerControllerDidCancel:`: this method is called when the end user decides to cancel the current image image picker
 
 Fore more details, please refer to the `sample/DemoApp` example application that fully illustrates how to use the SDK.

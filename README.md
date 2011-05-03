@@ -32,8 +32,9 @@ to be recognized.
 
 Then, the SDK is pretty similar to the iOS `UIImagePickerController`:
 
-*   Initialize an `MImagePickerController` with your API key and secret pair
-*   Present it modally 
+*   Initialize an `MImagePickerController` with your API key and secret pair: @[[MImagePickerController alloc] initWithKey:@"kEy" andSecret:@"sEcReT"]@
+*   Configure the delegate: `picker.delegate = self;`
+*   Present it modally : `[self presentModalViewController:picker animated:YES];`
 *   Implement the `MImagePickerControllerDelegate` protocol:
 	*   `imagePickerController:didFinishQueryingWithInfo:`: this method is called when the image recognition has completed.
 	     It returns a dictionary that includes the `status` (`ok` or `error`), the `message` (useful when an error occurs) and the

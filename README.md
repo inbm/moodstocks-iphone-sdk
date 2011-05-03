@@ -32,7 +32,7 @@ to be recognized.
 
 Then, the SDK is pretty similar to the iOS `UIImagePickerController`:
 
-*   Initialize an `MImagePickerController` with your API key and secret pair: @[[MImagePickerController alloc] initWithKey:@"kEy" andSecret:@"sEcReT"]@
+*   Initialize an `MImagePickerController` with your API key and secret pair: `[[MImagePickerController alloc] initWithKey:@"kEy" andSecret:@"sEcReT"]`
 *   Configure the delegate: `picker.delegate = self;`
 *   Present it modally : `[self presentModalViewController:picker animated:YES];`
 *   Implement the `MImagePickerControllerDelegate` protocol:

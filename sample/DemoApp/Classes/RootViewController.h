@@ -25,16 +25,14 @@
 
 #import "MoodstocksSDK.h"
 
-@interface RootViewController : UITableViewController <MImagePickerControllerDelegate> {
-    NSString* _status;
-    NSString* _message;
-    NSArray* _matches;
+@interface RootViewController : UITableViewController <MSScannerControllerDelegate> {
+    NSString* _resultID;
+    NSString* _resultType;
 }
 
-@property(nonatomic, copy) NSString* status;
-@property(nonatomic, copy) NSString* message;
-@property(nonatomic, copy) NSArray* matches;
+@property(nonatomic, copy) NSString* resultID;
+@property(nonatomic, copy) NSString* resultType;
 
-- (void)takePicture;
+- (void)scanAction;
 
 @end

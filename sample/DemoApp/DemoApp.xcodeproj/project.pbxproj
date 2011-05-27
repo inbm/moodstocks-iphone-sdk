@@ -15,6 +15,11 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		8270B6DB138E9A2C00A58037 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8270B6DA138E9A2C00A58037 /* AVFoundation.framework */; };
+		8270B6DF138E9A3800A58037 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8270B6DE138E9A3800A58037 /* CoreVideo.framework */; };
+		8270B6E3138E9A3C00A58037 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8270B6E2138E9A3C00A58037 /* CoreMedia.framework */; };
+		8270B6E7138E9A3F00A58037 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8270B6E6138E9A3F00A58037 /* AudioToolbox.framework */; };
+		8270B6EB138E9A4300A58037 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8270B6EA138E9A4300A58037 /* libiconv.dylib */; };
 		828281011282C9A2003EB400 /* libMoodstocksSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 828280FF1282C9A2003EB400 /* libMoodstocksSDK.a */; };
 		828281031282C9AD003EB400 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828281021282C9AD003EB400 /* CFNetwork.framework */; };
 		828281071282C9B0003EB400 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828281061282C9B0003EB400 /* SystemConfiguration.framework */; };
@@ -36,6 +41,11 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8270B6DA138E9A2C00A58037 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8270B6DE138E9A3800A58037 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		8270B6E2138E9A3C00A58037 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8270B6E6138E9A3F00A58037 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8270B6EA138E9A4300A58037 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		828280FF1282C9A2003EB400 /* libMoodstocksSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMoodstocksSDK.a; path = ../../library/libMoodstocksSDK.a; sourceTree = SOURCE_ROOT; };
 		828281001282C9A2003EB400 /* MoodstocksSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodstocksSDK.h; path = ../../library/MoodstocksSDK.h; sourceTree = SOURCE_ROOT; };
 		828281021282C9AD003EB400 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -60,6 +70,11 @@
 				8282810B1282C9B3003EB400 /* MobileCoreServices.framework in Frameworks */,
 				8282810F1282C9B6003EB400 /* QuartzCore.framework in Frameworks */,
 				828281131282C9B9003EB400 /* libz.1.2.3.dylib in Frameworks */,
+				8270B6DB138E9A2C00A58037 /* AVFoundation.framework in Frameworks */,
+				8270B6DF138E9A3800A58037 /* CoreVideo.framework in Frameworks */,
+				8270B6E3138E9A3C00A58037 /* CoreMedia.framework in Frameworks */,
+				8270B6E7138E9A3F00A58037 /* AudioToolbox.framework in Frameworks */,
+				8270B6EB138E9A4300A58037 /* libiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +114,11 @@
 				8282810A1282C9B3003EB400 /* MobileCoreServices.framework */,
 				8282810E1282C9B6003EB400 /* QuartzCore.framework */,
 				828281121282C9B9003EB400 /* libz.1.2.3.dylib */,
+				8270B6DA138E9A2C00A58037 /* AVFoundation.framework */,
+				8270B6DE138E9A3800A58037 /* CoreVideo.framework */,
+				8270B6E2138E9A3C00A58037 /* CoreMedia.framework */,
+				8270B6E6138E9A3F00A58037 /* AudioToolbox.framework */,
+				8270B6EA138E9A4300A58037 /* libiconv.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -231,6 +251,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"-lstdc++",
 				);
 				PRODUCT_NAME = DemoApp;
 				SDKROOT = iphoneos4.3;
@@ -254,6 +275,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"-lstdc++",
 				);
 				PRODUCT_NAME = DemoApp;
 				SDKROOT = iphoneos4.3;
@@ -269,7 +291,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.3;
 			};
@@ -283,7 +305,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.3;

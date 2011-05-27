@@ -1,11 +1,12 @@
-# Moodstocks iPhone SDK
+# Moodstocks iPhone SDK v2
 
 ## Overview
 
-Moodstocks iPhone SDK enables you to integrate image recognition into your iPhone mobile applications in seconds. It has been built to work on **iOS SDK 3.0 and higher**.
+Moodstocks iPhone SDK v2 provides you with a breakthrough scanner based on an image recognition API so that you can integrate scanning into your iPhone app the easy way.
 
-Basically it wraps the native image picker component, and adds some magic like encoding, querying, and parsing.
-And you get a cool scanning effect for free!
+The scanner is **universal** - it decodes raw images and barcodes, and **real-time** - it recognize objects and barcodes in a breeze, even on 3G networks.
+
+It uses the AV Foundation frameworks which are only available on iOS 4.0 and higher. It can be used on iPhone 3, iPhone 3GS and iPhone 4.
 
 ## Setup
 
@@ -20,37 +21,48 @@ To integrate Moodstocks iPhone SDK into your application:
 	*   `CoreGraphics`
 	*   `QuartzCore`
 	*   `libz.1.2.3`
-*   Click on the _Build_ tab, choose _All Configurations_ and add `-ObjC -all_load` for the _Other Linker Flags_ setting
+	*   `AVFoundation`
+	*   `CoreVideo`
+	*   `CoreMedia`
+	*   `AudioToolbox`
+	*   `libiconv`
+*   Click on the _Build_ tab, choose _All Configurations_ and add `-ObjC -all_load -lstdc++` for the _Other Linker Flags_ setting
 
-You'll find an example application into `sample/DemoApp` which is properly configured.
+**IMPORTANT**: do not miss this last step otherwise you won't be able to build your app!
+
+You'll find a ready-to-use and properly configured sample application into `sample/DemoApp`.
 
 ## Using the SDK
 
-Before you start using the SDK, you must first [register for an account](http://api.moodstocks.com/signup)
-on [Moodstocks API](http://www.moodstocks.com/discover-our-products/moodstocks-api/), create an access key and import reference images
-to be recognized.
+Before you start using the SDK, feel free to refer to Moodstocks [How It Works](http://www.moodstocks.com/how-it-works/) page. As indicated you need first:
 
-Then, the SDK is pretty similar to the iOS `UIImagePickerController`:
+1.   [to register for an account](http://api.moodstocks.com/signup) on Moodstocks API,
+2.   [to create an API key](http://extranet.moodstocks.com/access_keys/new),
+3.   [to index your own reference images](https://github.com/Moodstocks/moodstocks-api/wiki/api-v2-doc#add-object).
 
-*   Initialize an `MImagePickerController` with your API key and secret pair: `[[MImagePickerController alloc] initWithKey:@"kEy" andSecret:@"sEcReT"]`
-*   Configure the delegate: `picker.delegate = self;`
-*   Present it modally : `[self presentModalViewController:picker animated:YES];`
-*   Implement the `MImagePickerControllerDelegate` protocol:
-	*   `imagePickerController:didFinishQueryingWithInfo:`: this method is called when the image recognition has completed.
-	     It returns a dictionary that includes the `status` (`ok` or `error`), the `message` (useful when an error occurs) and the
-	     list of `matches` that refer to the item IDs you've imported into Moodstocks API.
-	     This list is empty in case of no match found.
-	     This dictionary also includes the original image used for querying (see `UIImagePickerControllerOriginalImage`).
-	     Use the `image` key to obtain this `UIImage` (on iPhone 4 the resolution is 2592x1936).
-	*   `imagePickerControllerDidCancel:`: this method is called when the end user decides to cancel the current image image picker
+Once done using the SDK is just a matter of a few lines of code:
 
-Fore more details, please refer to the `sample/DemoApp` example application that fully illustrates how to use the SDK.
+*   Initialize an `MSScannerController` with a valid API key and secret pair,
+*   Configure the delegate: `scanner.delegate = self;`
+*   Present it modally : `[self presentModalViewController:scanner animated:YES];`
+*   Implement the `MSScannerControllerDelegate` protocol:
+	*   `scannerController:didScanObject:withInfo:`: this method is called when an object has been successfully recognized via image search.
+	     It returns the object ID that you've used for indexing and the frame that has been successfully scanned.
+	*   `scannerController:didScanBarcode:withInfo:`: this method is called when a barcode has been successfully decoded.
+	     It returns the barcode value and barcode type.	
+	*   `scannerControllerDidCancel:`: this method is called when the end user decides to cancel the current scanner.
+
+Fore more details, please refer to the `sample/DemoApp` application that fully illustrates how to use the SDK.
+
+For a complete overview please refer to the `MoodstocksSDK.h` header file.
+
+**IMPORTANT**: the SDK uses the AV Foundation frameworks for video capture and is thus intended to be used on a **real device**. For convenience the SDK is compatible with the Simulator but won't display any video preview.
 
 ## Contact us
 
-For more details feel free to join us on our [support chat](http://moodstocks.campfirenow.com/2416e), or contact us by email at
+We're here to help! Feel free to join us on our [support chat](http://moodstocks.campfirenow.com/2416e), or ask a question on our [forum](http://forum.moodstocks.com/). You can also contact us by email at
 <a href="m&#x61;&#x69;l&#116;&#111;:&#x63;&#x6F;&#110;&#x74;&#097;&#099;&#x74;&#064;&#109;&#x6F;&#x6F;&#x64;&#115;&#x74;&#111;&#099;&#x6B;s&#x2E;&#099;&#x6F;&#109;">&#x63;&#x6F;&#110;&#x74;&#097;&#099;&#x74;&#064;&#109;&#x6F;&#x6F;&#x64;&#115;&#x74;&#111;&#099;&#x6B;s&#x2E;&#099;&#x6F;&#109;</a>.
 
 ## Copyright
 
-Copyright (c) 2011 Moodstocks SAS
+Copyright (c) 2010-2011 Moodstocks SAS

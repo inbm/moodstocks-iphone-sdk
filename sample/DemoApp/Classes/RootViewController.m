@@ -27,61 +27,107 @@
  * PLEASE MAKE SURE TO REPLACE WITH YOUR KEY/SECRET PAIR
  *
  * For more details, please refer to:
- * http://github.com/Moodstocks/moodstocks-api-kits/wiki/Developer-documentation
+ * https://github.com/Moodstocks/moodstocks-api/wiki/api-v2-doc
  */
-static NSString* kMAPIKey    = @"ApIkEy";
-static NSString* kMAPISecret = @"SeCrEtKeY";
+static NSString* kMSAPIKey    = @"ApIkEy";
+static NSString* kMSAPISecret = @"SeCrEt";
 
 @implementation RootViewController
 
-@synthesize status  = _status;
-@synthesize message = _message;
-@synthesize matches = _matches;
+@synthesize resultID  = _resultID;
+@synthesize resultType = _resultType;
 
-- (void)takePicture {
-    MImagePickerController * picker = [[MImagePickerController alloc] initWithKey:kMAPIKey andSecret:kMAPISecret];
-    picker.delegate = self;
-    [self presentModalViewController:picker animated:NO];
-    [picker release];
+- (void)scanAction {
+    MSScannerController* scanner = [[MSScannerController alloc] initWithKey:kMSAPIKey andSecret:kMSAPISecret];
+    scanner.delegate = self;
+    
+    // Notes about barcode decoding
+    // --
+    // By default *all* barcode formats are decoded. You can easily enable/disable decoding
+    // per barcode format, e.g.:
+    /*
+    scanner.decodeITF   = NO; // do NOT decode ITF format
+    scanner.decodeUPC_E = NO; // do NOT decode UPC-E format
+    */
+    
+    // You can also completely turn off barcode decoding by setting all these flags to NO
+    
+    [self presentModalViewController:scanner animated:YES];
+    [scanner release];
 }
 
 #pragma mark -
-#pragma mark MImagePickerControllerDelegate
+#pragma mark MSScannerControllerDelegate
 
-- (void)imagePickerController:(MImagePickerController*)picker didFinishQueryingWithInfo:(NSDictionary *)info {
-    [self dismissModalViewControllerAnimated:NO];
-    
-    NSDictionary* results = [info objectForKey:@"results"];
-    
-    self.status  = [info objectForKey:@"status"];
-    self.message = [info objectForKey:@"message"];
-    self.matches = [results objectForKey:@"matches"];
-    
-    // (optional) if needed, you can retrieve the original image that has just been scanned
-    // e.g. this is useful if your application needs to upload it, save it into the library, etc
+- (void)scannerController:(MSScannerController*)scanner didScanObject:(NSString*)objectID withInfo:(NSDictionary*)info {
+    // An object has been successfully scanned: let's dismiss the scanner
+    [self dismissModalViewControllerAnimated:YES];
+        
+    // `objectID' is the ID you've used to index this object on Moodstocks API
     //
-    // This image corresponds to the `UIImagePickerControllerOriginalImage' format (resolution is 2592x1936 on an iPhone 4)
-    UIImage* image = [info objectForKey:@"image"];
-    // ... do something useful with `image'
+    // In most cases you'll have now to retrieve related metadata (e.g. URL, product title)
+    //
+    // Such data could:
+    //
+    // * be decoded from the objectID if you've chosen to do so (e.g. obtain an URL from base64url encoded ID)
+    //   see https://github.com/Moodstocks/moodstocks-api/wiki/api-v2-help-objects
+    //
+    // * be fetched from a local database
+    // * be fetched from a remote database via an HTTP call to your web server
+    //   see https://github.com/Moodstocks/moodstocks-api/wiki/api-v2-help-appmodel
+    self.resultID = objectID;
+    self.resultType = @"Image";
     
-    // When the status is "error" the message field possible values are:
-    // * "Connection failure"
-    // * "Request timed out"
-    // * "Authentication error", i.e. wrong API key / secret pair
-    // * "Internal error", for miscellaneous error
-    if ([self.status isEqualToString:@"error"]) {
-        [[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
-                               message:self.message
-                               delegate:nil
-                               cancelButtonTitle:@"OK"
-                               otherButtonTitles:nil] autorelease] show];
-    }
+    // (optional) if needed, you can retrieve the image that has just been successfully scanned
+    // e.g. this is useful if your application needs to upload it, save it into the library, etc
+    /*
+    UIImage* image = [info objectForKey:@"image"];
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    */
     
     [self.tableView reloadData];
 }
 
-- (void)imagePickerControllerDidCancel:(MImagePickerController*)picker {
-    [self dismissModalViewControllerAnimated:NO];
+- (void)scannerController:(MSScannerController*)scanner didScanBarcode:(NSString*)ean withInfo:(NSDictionary*)info {
+    // A barcode has been successfully scanned: let's dismiss the scanner
+    [self dismissModalViewControllerAnimated:YES];
+    
+    // `ean' gives the decoded barcode value (e.g. @"3384442115711")
+    // You can also query the `info' dict for the @"barcode_type" (e.g. @"ean_13")
+    self.resultID = ean;
+    self.resultType = (NSString *) [info objectForKey:@"barcode_type"];
+    
+    [self.tableView reloadData];
+}
+
+- (void)scannerController:(MSScannerController*)scanner failedToScanObject:(UIImage*)image withReason:(NSString*)reason {
+    // This handler is mainly provided for debugging/logging purpose
+    //
+    // In most cases you will *not* have to implement it since you should let the end user cancel
+    // scanning according to the messages displayed by the info view
+    NSLog(@"[MS SCANNER] Object scan failed, reason: %@", reason);
+    
+    // (optional) if needed, you can use the latest scanned frame
+    // e.g. this could be useful in advanced cases if your application needs to do something when scanning
+    //      couldn't find results
+    /*
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    */
+    
+    self.resultID = nil;
+    self.resultType = nil;
+    
+    [self.tableView reloadData];
+}
+
+- (void)scannerControllerDidCancel:(MSScannerController*)scanner {
+    // The user has just clicked on Cancel: let's dismiss the scanner
+    [self dismissModalViewControllerAnimated:YES];
+    
+    self.resultID = nil;
+    self.resultType = nil;
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -91,7 +137,7 @@ static NSString* kMAPISecret = @"SeCrEtKeY";
     [super viewDidLoad];
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-                                                                       target:self action:@selector(takePicture)] autorelease];
+                                                                       target:self action:@selector(scanAction)] autorelease];
     self.title = @"Moodstocks SDK Demo";
 }
 
@@ -99,40 +145,21 @@ static NSString* kMAPISecret = @"SeCrEtKeY";
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger nbRows;
-    NSInteger nbMatches = [self.matches count];
-    
-    switch (section) {
-        case 0:
-        case 1:
-            nbRows = 1;
-            break;
-        case 2:
-            nbRows = nbMatches > 0 ? nbMatches : 1;
-            break;
-            
-        default:
-            nbRows = 0;
-    }
-    
-    return nbRows;
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
    NSString * title; 
     switch (section) {
         case 0:
-            title = @"Status";
+            title = @"Result ID";
             break;
         case 1:
-            title = @"Message";
-            break;
-        case 2:
-            title = @"Results";
+            title = @"Result type";
             break;
             
         default:
@@ -154,46 +181,24 @@ static NSString* kMAPISecret = @"SeCrEtKeY";
     UILabel* textLabel = cell.textLabel;
     
     if ([indexPath section] == 0) {
-        textLabel.text = self.status ? self.status : @"N/A";
+        textLabel.text = self.resultID;
     }
     else if ([indexPath section] == 1) {
-        textLabel.text = (self.message && self.message.length > 0) ? self.message : @"N/A";
-    }
-    else if ([indexPath section] == 2) {
-        if (self.matches && ([self.matches count] > 0)) {
-            textLabel.text = [self.matches objectAtIndex:[indexPath row]];
-        }
-        else {
-            textLabel.text = @"N/A";
-        }
+        textLabel.text = self.resultType;
     }
 
     return cell;
 }
 
 #pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // do nothing
-}
-
-
-#pragma mark -
 #pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)dealloc {
-    [_status release];
-    [_message release];
-    [_matches release];
+    [_resultID release];
+    [_resultType release];
 
     [super dealloc];
 }
 
 
 @end
-

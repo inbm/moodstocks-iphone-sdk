@@ -52,7 +52,7 @@ Once done using the SDK is just a matter of a few lines of code:
 	     It returns the barcode value and barcode type.	
 	*   `scannerControllerDidCancel:`: this method is called when the end user decides to cancel the current scanner.
 
-Fore more details, please refer to the `sample/DemoApp` application that fully illustrates how to use the SDK.
+Fore more details, please refer to the `sample/DemoApp` application that fully illustrates how to use the SDK. We have also a [detailed how-to article](https://github.com/Moodstocks/moodstocks-api/wiki/sdk-v2-how-it-works) that covers the SDK: don't miss it!
 
 For a complete overview please refer to the `MoodstocksSDK.h` header file.
 

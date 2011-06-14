@@ -144,7 +144,7 @@ void *NewBase64Decode(
 // Same as dataFromBase64String: except that it decodes a base64url without
 // padding input string
 //
-// Fore more details please refer to:
+// For more details please refer to:
 // - http://tools.ietf.org/html/rfc4648#section-5
 // - http://tools.ietf.org/html/rfc4648#section-3.2
 //

@@ -70,7 +70,8 @@ static NSString* kMSAPISecret = @"SeCrEt";
     // Such data could:
     //
     // * be decoded from the objectID if you've chosen to do so (e.g. obtain an URL from base64url encoded ID)
-    //   see https://github.com/Moodstocks/moodstocks-api/wiki/api-v2-help-objects
+    //   see "Step 5 - Decode ID and open the URL" from tutorial:
+    //   https://github.com/Moodstocks/moodstocks-api/wiki/usnap-like-application
     //
     // * be fetched from a local database
     // * be fetched from a remote database via an HTTP call to your web server

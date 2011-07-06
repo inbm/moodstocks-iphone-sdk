@@ -1,8 +1,8 @@
-# Moodstocks iPhone SDK v2
+# Moodstocks iPhone SDK Video
 
 ## Overview
 
-Moodstocks iPhone SDK v2 provides you with a breakthrough scanner based on an image recognition API so that you can integrate scanning into your iPhone app the easy way.
+Moodstocks iPhone SDK Video provides you with a breakthrough scanner based on an image recognition API so that you can integrate scanning into your iPhone app the easy way.
 
 The scanner is **universal** - it decodes raw images and barcodes, and **real-time** - it recognize objects and barcodes in a breeze, even on 3G networks.
 

@@ -36,6 +36,62 @@
 @property (nonatomic, assign) BOOL decodeITF;
 
 /**
+ * INFO VIEW MESSAGES
+ * --
+ *
+ * The scanner includes an info view on bottom of the screen that is kept
+ * updated so that to inform the end user what is going on, e.g. in case
+ * of no Internet connection.
+ *
+ * The scanner provides default English messages that you may want to customize
+ * or localize by using the following setters.
+ *
+ * `readyMessage'
+ * --
+ * Message displayed when the scanner is ready to scan.
+ *
+ * Default:
+ * "I'm ready to scan! Just point me to the object of interest."
+ *
+ * `scanningMessage'
+ * --
+ * Message displayed when the scanner is processing.
+ *
+ * Default:
+ * "I'm scanning right now. Hold me still while I'm processing!"
+ *
+ * `maxTriesMessage'
+ * --
+ * Message displayed when the scanner could not find a result
+ * after several consecutive tries. It *keeps* scanning after
+ * this message has been displayed.
+ *
+ * Default:
+ * "I'm having trouble finding information. I'm not giving up!"
+ *
+ * `noConnectionMessage'
+ * --
+ * Message displayed when there is no Internet connection 
+ * (and a connection is required for image decoding)
+ *
+ * Default:
+ * "I couldn't find any Internet connection!"
+ *
+ * `sleepMessage'
+ * --
+ * Message displayed when the scanner enters the sleep mode
+ * if left untouched for a long amount of time. 
+ *
+ * Default:
+ * "I got tired of waiting. But we can make me up by shaking me!"
+ */
+@property (nonatomic, copy) NSString* readyMessage;
+@property (nonatomic, copy) NSString* scanningMessage;
+@property (nonatomic, copy) NSString* maxTriesMessage;
+@property (nonatomic, copy) NSString* noConnectionMessage;
+@property (nonatomic, copy) NSString* sleepMessage;
+
+/**
  * The scanner delegate (see protocol below)
  */
 @property (nonatomic, assign) id <MSScannerControllerDelegate> delegate;

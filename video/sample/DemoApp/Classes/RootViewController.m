@@ -52,6 +52,15 @@ static NSString* kMSAPISecret = @"SeCrEt";
     
     // You can also completely turn off barcode decoding by setting all these flags to NO
     
+    // Notes about scanner messages
+    // --
+    // The scanner includes an info view with displayed message to help the end user understand
+    // what's going on (see MoodstocksSDK.h for more details). You can freely customize / localize
+    // each message if you wish, e.g.:
+    /*
+    scanner.noConnectionMessage = @"There is no Internet connection: please try again later.";
+    */
+    
     [self presentModalViewController:scanner animated:YES];
     [scanner release];
 }

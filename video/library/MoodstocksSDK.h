@@ -67,7 +67,7 @@
  * this message has been displayed.
  *
  * Default:
- * "I'm having trouble finding information. I'm not giving up!"
+ * "I'm having trouble finding information but I'm not giving up!"
  *
  * `noConnectionMessage'
  * --

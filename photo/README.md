@@ -26,7 +26,7 @@ You'll find an example application into `sample/DemoApp` which is properly confi
 
 ## Using the SDK
 
-Before you start using the SDK, you must first [register for an account](http://api.moodstocks.com/signup)
+Before you start using the SDK, you must first [register for an account](http://extranet.moodstocks.com/signup)
 on [Moodstocks API](http://www.moodstocks.com/discover-our-products/moodstocks-api/), create an access key and import reference images
 to be recognized.
 

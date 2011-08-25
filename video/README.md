@@ -4,7 +4,7 @@
 
 Moodstocks iPhone SDK Video provides you with a breakthrough scanner based on an image recognition API so that you can integrate scanning into your iPhone app the easy way.
 
-The scanner is **universal** - it decodes raw images and barcodes, and **real-time** - it recognize objects and barcodes in a breeze, even on 3G networks. It leverages the device accelerometer so as to automatically stop scanning when the device is moving fast.
+The scanner is **universal** - it decodes raw images and 1D barcodes, and **real-time** - it recognize objects and barcodes in a breeze, even on 3G networks. It leverages the device accelerometer so as to automatically stop scanning when the device is moving fast.
 
 It uses the AV Foundation frameworks which are only available on iOS 4.0 and higher. It can be used on iPhone 3, iPhone 3GS and iPhone 4.
 

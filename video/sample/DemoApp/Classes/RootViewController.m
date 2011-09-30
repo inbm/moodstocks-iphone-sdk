@@ -110,11 +110,28 @@ static NSString* kMSAPISecret = @"SeCrEt";
     [self.tableView reloadData];
 }
 
+- (void)scannerControllerDidCancel:(MSScannerController*)scanner {
+    // The user has just clicked on Cancel: let's dismiss the scanner
+    [self dismissModalViewControllerAnimated:YES];
+    
+    self.resultID = nil;
+    self.resultType = nil;
+    
+    [self.tableView reloadData];
+}
+
+// -------------------------------------------------
+// DEBUG ONLY
+// -------------------------------------------------
+//
+// This method receives messages sent by the scanner to ease the process of development in DEBUG mode
+//
 - (void)scannerController:(MSScannerController*)scanner failedToScanObject:(UIImage*)image withReason:(NSString*)reason {
-    // This handler is mainly provided for debugging/logging purpose
+    //`reason' is a string containing a debugging information, e.g. @"Invalid credentials" if the API key/secret	
+    // has not been sent correctly.
     //
-    // In most cases you will *not* have to implement it since you should let the end user cancel
-    // scanning according to the messages displayed by the info view
+    // IMPORTANT: do *NOT* rely on these messages to implement specific application logic.
+
     NSLog(@"[MS SCANNER] Object scan failed, reason: %@", reason);
     
     // (optional) if needed, you can use the latest scanned frame
@@ -129,16 +146,9 @@ static NSString* kMSAPISecret = @"SeCrEt";
     
     [self.tableView reloadData];
 }
-
-- (void)scannerControllerDidCancel:(MSScannerController*)scanner {
-    // The user has just clicked on Cancel: let's dismiss the scanner
-    [self dismissModalViewControllerAnimated:YES];
-    
-    self.resultID = nil;
-    self.resultType = nil;
-    
-    [self.tableView reloadData];
-}
+// -------------------------------------------------
+// DEBUG ONLY
+// -------------------------------------------------
 
 #pragma mark -
 #pragma mark View lifecycle

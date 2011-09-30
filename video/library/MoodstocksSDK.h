@@ -129,21 +129,6 @@
 - (void)scannerController:(MSScannerController*)scanner didScanObject:(NSString*)objectID withInfo:(NSDictionary*)info;
 
 /**
- * Called when image search failed for some reason.
- *
- * - `image' represents the latest frame that was scanned
- * - `reason' indicates why scanning failed, i.e.:
- *   - @"Invalid credentials": wrong key/secret pair
- *   - @"No connection": no Internet connection (required for image search only)
- *   - @"Max tries": no results have been found after several tries (that said the scanner keeps processing)
- *   - @"Unknown": internal error
- *
- * This method is mainly provided for debugging/logging purpose since in most cases you should let the
- * end user acts according to the scanner info view messages.
- */
-- (void)scannerController:(MSScannerController*)scanner failedToScanObject:(UIImage*)image withReason:(NSString*)reason;
-
-/**
  * Called when a barcode has been successfully decoded.
  *
  * - `ean' holds the string that represents the decoded barcode value, e.g. @"3384442115711"
@@ -160,4 +145,19 @@
  * It's up to the caller to dismiss the current scanner controller.
  */
 - (void)scannerControllerDidCancel:(MSScannerController*)scanner;
+
+/**
+ * DEBUG ONLY
+ * --
+ * Convenient method used to obtain messages sent by the scanner. Such messages may be logged by the caller in
+ * Debug mode to ease the process of development.
+ *
+ * - `image' represents the latest frame that was scanned
+ * - `reason' is a string containing a debugging information, e.g. @"Invalid credentials" if the API key/secret	
+ *   has not been sent correctly.
+ *
+ * IMPORTANT: the caller must *NOT* rely on these messages to implement specific application logic.
+ */
+- (void)scannerController:(MSScannerController*)scanner failedToScanObject:(UIImage*)image withReason:(NSString*)reason;
+
 @end

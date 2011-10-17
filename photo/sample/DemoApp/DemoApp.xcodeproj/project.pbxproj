@@ -20,7 +20,7 @@
 		828281071282C9B0003EB400 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828281061282C9B0003EB400 /* SystemConfiguration.framework */; };
 		8282810B1282C9B3003EB400 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8282810A1282C9B3003EB400 /* MobileCoreServices.framework */; };
 		8282810F1282C9B6003EB400 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8282810E1282C9B6003EB400 /* QuartzCore.framework */; };
-		828281131282C9B9003EB400 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 828281121282C9B9003EB400 /* libz.1.2.3.dylib */; };
+		82FDFC07144C6D860056C988 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 82FDFC06144C6D860056C988 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +42,7 @@
 		828281061282C9B0003EB400 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8282810A1282C9B3003EB400 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8282810E1282C9B6003EB400 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		828281121282C9B9003EB400 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		82FDFC06144C6D860056C988 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82FDFC07144C6D860056C988 /* libz.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -59,7 +60,6 @@
 				828281071282C9B0003EB400 /* SystemConfiguration.framework in Frameworks */,
 				8282810B1282C9B3003EB400 /* MobileCoreServices.framework in Frameworks */,
 				8282810F1282C9B6003EB400 /* QuartzCore.framework in Frameworks */,
-				828281131282C9B9003EB400 /* libz.1.2.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +88,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				82FDFC06144C6D860056C988 /* libz.dylib */,
 				828280F61282C973003EB400 /* MoodstocksSDK */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -98,7 +99,6 @@
 				828281061282C9B0003EB400 /* SystemConfiguration.framework */,
 				8282810A1282C9B3003EB400 /* MobileCoreServices.framework */,
 				8282810E1282C9B6003EB400 /* QuartzCore.framework */,
-				828281121282C9B9003EB400 /* libz.1.2.3.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -233,7 +233,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = DemoApp;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos5.0;
 			};
 			name = Debug;
 		};
@@ -256,7 +256,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = DemoApp;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -264,21 +264,27 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos5.0;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -286,7 +292,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos5.0;
 			};
 			name = Release;
 		};
